@@ -10,11 +10,11 @@
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/jd-manager/jd-manager-pojo/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
       <set>
-        <option value="$PROJECT_DIR$/jd-manager/jd-manager-pojo/pom.xml" />
         <option value="$PROJECT_DIR$/jd-manager/jd-manager-web/pom.xml" />
       </set>
     </option>

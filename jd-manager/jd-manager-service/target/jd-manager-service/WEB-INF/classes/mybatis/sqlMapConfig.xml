@@ -1,0 +1,22 @@
+<?xml version="1.0"   encoding="UTF-8"?>
+<!DOCTYPE configuration   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 表示类型别名库-->
+    <typeAliases>
+        <!-- package表示包，利用包的形式进行扫描包之下的所有的类，别名就是当前类名 -->
+        <package name="jd.com.pp.jd.entity"/>
+    </typeAliases>
+    <!-- 分页插件 -->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <!-- 分页参数合理化，默认false禁用-->
+            <!--pageNum表示当前页  pages表示尾页-->
+            <!--true启用合理化时，如果pageNum<1会查询第一页，如果pageNum>pages会查询最后一页-->
+            <!--false禁用合理化时，如果pageNum<1或pageNum>pages会返回空数据-->
+            <property name="reasonable"   value="true"/>
+            <!-- 设置数据库类型 Oracle,Mysql,MariaDB,SQLite,Hsqldb,PostgreSQL六种数据库-->
+            <property name="helperDialect" value="mysql"/>
+        </plugin>
+    </plugins>
+</configuration>

@@ -11,4 +11,16 @@
   <artifactId>jd-manager-interface</artifactId>
   <name>jd-manager-interface</name>
   <url>http://www.example.com</url>
+  <dependencies>
+    <dependency>
+      <groupId>com.pp</groupId>
+      <artifactId>jd-manager-pojo</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+    <!--        pageHelper-->
+    <dependency>
+      <groupId>com.github.pagehelper</groupId>
+      <artifactId>pagehelper</artifactId>
+    </dependency>
+  </dependencies>
 </project>

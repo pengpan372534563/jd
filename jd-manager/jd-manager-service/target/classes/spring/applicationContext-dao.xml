@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--        加载数据库配置文件-->
+    <context:property-placeholder location="classpath:db/db.properties" />
+    <!--连接池-->
+    <bean  id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!--        连库四要素-->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.password}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+<!--  SqlSessionFactory  -->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+<!--        加载数据源-->
+        <property name="dataSource" ref="dataSource"/>
+<!--        加载mybatis配置文件-->
+        <property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"/>
+    </bean>
+<!--    扫码mapper接口-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.pp.jd.mapper"/>
+    </bean>
+</beans>

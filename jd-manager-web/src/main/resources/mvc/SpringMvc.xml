@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- 开启controller层中spring注解驱动 -->
+    <context:component-scan base-package="com.pp.jd.controller" />
+    <!-- 开启springmvc特有的注解驱动  打开 @RequestMapping  @RequestParam  -->
+    <mvc:annotation-driven></mvc:annotation-driven>
+    <!--放行静态文件-->
+    <mvc:default-servlet-handler/>
+    <!-- 处理jsp页面所在的前缀和后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 前缀,确定当前访问的页面路径地址 -->
+        <property name="prefix" value="/WEB-INF/jsp/">
+        </property>
+        <!-- 后缀,确定要访问的文件类型 -->
+        <property name="suffix" value=".jsp" />
+        <!--使用JSTL作为解析器-->
+<!--        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />-->
+    </bean>
+<!--    引用服务-->
+<!--    服务提供者的名称        当你是服务消费者的同时你也是服务员提供服者-->
+    <dubbo:application name="jd-manager-web"/>
+<!--      去注册中心拿服务-->
+    <dubbo:registry protocol="zookeeper" address="192.168.23.128:2181"/>
+<!--    引用服务-->
+    <dubbo:reference interface="com.pp.jd.service.ItemService" id="itemService"/>
+</beans>
